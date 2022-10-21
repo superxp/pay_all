@@ -1,0 +1,25 @@
+package com.chaotu.pay.common.channel.qrcpay.util;
+
+import java.util.Map;
+
+public class RequestJson {
+
+	private String code;
+	private Map<String, Object> request;
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public Map<String, Object> getRequest() {
+		return request;
+	}
+
+	public void setRequest(Map<String, Object> request) {
+		this.request = request;
+	}
+}
