@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.*;
 
@@ -112,6 +113,42 @@ public class OrderController {
         }
 
     }
+
+
+    @PostMapping("/pay1")
+    public Object pay1(HttpServletRequest request){
+        try {
+            /*String key = "channel:"+orderVo.getChannelId()+":"+ DateUtil.getMinute();
+            Long times = jedis.incr(key);
+            Long ttl = jedis.ttl(key);
+            if(-1 == ttl){
+                jedis.expire(key,60);
+            }*/
+            OrderVo orderVo = new OrderVo();
+            orderVo.setMerchant(request.getParameter("merchant"));
+            orderVo.setUnderOrderNo(request.getParameter("underOrderNo"));
+            orderVo.setAmount(BigDecimal.valueOf(Long.valueOf(request.getParameter("amount"))));
+            orderVo.setNotifyUrl(request.getParameter("notifyurl"));
+            orderVo.setPayTypeId(Integer.valueOf(request.getParameter("payTypeId")));
+            orderVo.setSign(request.getParameter("sign"));
+
+
+
+
+            Map pay = (Map) orderService.pay(orderVo);
+            pay.remove("upperOrderNo");
+            return pay;
+        }catch (Exception e){
+            e.printStackTrace();
+            Map<Object,Object > resultMap = new HashMap<>();
+            resultMap.put("success","0");
+            resultMap.put("msg","系统异常");
+            return resultMap;
+        }
+
+    }
+
+
     @RequestMapping("/notify/{channelId}/{orderNo}")
     public String notify(/*@RequestBody Map<String,Object> params,*/ @PathVariable Long channelId,@PathVariable String orderNo, HttpServletRequest request){
 

@@ -26,7 +26,7 @@ yz:
   getItemIdUrl: https://www.youzan.com/v2/trade/newOrderDelivery/deliveryWindow.json
   userAddressUrl: https://h5.youzan.com/wsctrade/order/address/list?switchable=false
 server:
-  port: 8080
+  port: 8081
   servlet:
     context-path: /
   tomcat:
@@ -47,7 +47,7 @@ spring:
         max-concurrency: 20
   # 数据源
   datasource:
-    url: jdbc:mysql://172.23.60.8:3306/pay-all?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true
+    url: jdbc:mysql://81.70.63.250:3306/pay-all?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true
     username: payall
     # Jasypt加密 可到common-utils中找到JasyptUtil加解密工具类生成加密结果 格式为ENC(加密结果)
     #password: ENC(F4B0s6u9xcDw3V+P0qC4CA==)

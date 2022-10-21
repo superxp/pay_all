@@ -224,12 +224,12 @@ public class OrderServiceImpl implements OrderService {
             return sortedMap;
         }
         SortedMap<Object,Object> checkSignMap = new TreeMap<>();
+        checkSignMap.put("amount",order.getAmount());
+        checkSignMap.put("merchant",order.getMerchant());
+        checkSignMap.put("notifyurl",order.getNotifyUrl());
+        checkSignMap.put("payTypeId",order.getPayTypeId());
         checkSignMap.put("underOrderNo",order.getUnderOrderNo());
         checkSignMap.put("sign",vo.getSign());
-        checkSignMap.put("amount",order.getAmount());
-        checkSignMap.put("notifyUrl",order.getNotifyUrl());
-        checkSignMap.put("userId",order.getUserId());
-        checkSignMap.put("payTypeId",order.getPayTypeId());
         if(!DigestUtil.checkSign(checkSignMap,userVo.getSignKey())){
             sortedMap.put("success","0");
             sortedMap.put("msg","验签失败");

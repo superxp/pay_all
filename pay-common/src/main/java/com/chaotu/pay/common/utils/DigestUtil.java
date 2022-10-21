@@ -85,7 +85,10 @@ public class DigestUtil {
             }
         }
         sb.append("key=" + key); //KEY是商户秘钥
+        System.out.println(sb.toString());
         String sign = DigestUtils.md5Hex(sb.toString());
+        System.out.println(sign);
+
         return sign; // D3A5D13E7838E1D453F4F2EA526C4766
         // D3A5D13E7838E1D453F4F2EA526C4766
     }
